@@ -1,0 +1,75 @@
+# Flutter/Dart/Pub related
+.dart_tool/
+.packages
+.pub-cache/
+build/
+flutter_*.png
+
+# Firebase (auto-generated or sensitive)
+firebase-debug.log
+firebase.json
+firestore.indexes.json
+firestore.rules
+storage.rules
+.env        # if using dotenv for Firebase configs
+*.secret.*  # any custom secret config naming
+
+# Android
+android/.gradle/
+android/captures/
+android/.idea/
+*.iml
+*.apk
+*.aab
+*.keystore
+google-services.json  # Firebase Android config
+
+# iOS
+ios/Pods/
+ios/.symlinks/
+ios/Flutter/Flutter.framework
+ios/Flutter/Flutter.podspec
+ios/.generated/
+*.xcworkspace
+*.xcuserstate
+ios/Runner.xcworkspace/
+DerivedData/
+GoogleService-Info.plist  # Firebase iOS config
+
+# macOS
+macos/Flutter/Flutter.framework
+macos/Flutter/Flutter.podspec
+macos/Pods/
+macos/.generated/
+*.xcworkspace
+
+# Web
+web/.dart_tool/
+web/build/
+firebase-messaging-sw.js
+firebase-config.js
+
+# Windows
+windows/runner/Debug/
+windows/runner/Release/
+windows/.vs/
+*.exe
+*.dll
+*.pdb
+
+# Linux
+linux/runner/Debug/
+linux/runner/Release/
+linux/.vs/
+*.so
+
+# IntelliJ / VSCode
+.idea/
+.vscode/
+*.swp
+
+# Others
+*.log
+*.tmp
+*.DS_Store
+*.lock
