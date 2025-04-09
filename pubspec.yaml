@@ -45,6 +45,8 @@ dependencies:
   firebase_database:
   firebase_auth:
   firebase_core:
+  animations:
+  flutter_svg:
 
 dev_dependencies:
   flutter_test:
