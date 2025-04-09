@@ -73,3 +73,9 @@ linux/.vs/
 *.tmp
 *.DS_Store
 *.lock
+
+#Google Map API key
+lib/helper/secret.dart
+
+#Firebase config
+android/app/google-services.json
