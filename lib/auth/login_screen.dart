@@ -1,16 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:ridehailing_driver/auth/auth_result.dart';
 import 'package:ridehailing_driver/auth/signup_screen.dart';
 import 'package:ridehailing_driver/providers/user_provider.dart';
 import 'package:ridehailing_driver/theme/contants.dart';
 import 'package:ridehailing_driver/views/home_screen.dart';
 
-class LoginScreen extends StatelessWidget {
+class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
   @override
+  State<LoginScreen> createState() => _LoginScreenState();
+}
+
+class _LoginScreenState extends State<LoginScreen> {
+  @override
   Widget build(BuildContext context) {
-    // final Size size = MediaQuery.of(context).size;
     UserProvider authProvider = Provider.of<UserProvider>(context);
 
     return Scaffold(
@@ -28,11 +33,6 @@ class LoginScreen extends StatelessWidget {
                   fit: BoxFit.cover,
                 ),
                 const SizedBox(height: defaultPadding),
-                // const Text(
-                //   " ",
-                // ),
-                const SizedBox(height: defaultPadding / 2),
-                // const SizedBox(height: 20),
                 TextField(
                   controller: authProvider.email,
                   decoration: InputDecoration(
@@ -54,25 +54,34 @@ class LoginScreen extends StatelessWidget {
                   alignment: Alignment.centerRight,
                   child: TextButton(
                     onPressed: () {
-                      //forget password
+                      // Implement forgot password if needed
                     },
                     child: const Text('Forgot Password?'),
                   ),
                 ),
-                // SizedBox(
-                //   height: size.height > 700 ? size.height * 0.1 : defaultPadding,
-                // ),
                 const SizedBox(height: defaultPadding),
                 ElevatedButton(
                   onPressed: () async {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) {
-                          return HomeScreen();
-                        },
-                      ),
-                    );
+                    final result = await authProvider.signIn('driver');
+                    switch (result) {
+                      case AuthSuccess():
+                        if (context.mounted) {
+                          showSnackBar(context, "Sign in successful");
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (_) => const HomeScreen(),
+                            ),
+                          );
+                        }
+                        break;
+
+                      case AuthFailure(:final message):
+                        if (context.mounted) {
+                          showSnackBar(context, message);
+                        }
+                        break;
+                    }
                   },
                   child: const Text('Login'),
                 ),

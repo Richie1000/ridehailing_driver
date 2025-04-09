@@ -10,6 +10,7 @@ class UserServices {
     required String email,
     required String phone,
     required String password,
+    required String role,
   }) async {
     await _dbRef.child(id).set({
       "id": id,
@@ -17,6 +18,7 @@ class UserServices {
       "email": email,
       "phone": phone,
       "password": password,
+      "role": role,
     });
   }
 

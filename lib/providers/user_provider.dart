@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:ridehailing_driver/auth/auth_result.dart';
 import 'package:ridehailing_driver/models/user.dart';
 import 'package:ridehailing_driver/services/user_services.dart';
 import 'package:ridehailing_driver/theme/contants.dart';
@@ -34,75 +35,75 @@ class UserProvider with ChangeNotifier {
     _initialize();
   }
 
-  Future<bool> signIn(BuildContext context) async {
+  Future<AuthResult> signIn(String expectedRole) async {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     _status = Status.Authenticating;
     notifyListeners();
+
     try {
       UserCredential userCredential = await auth.signInWithEmailAndPassword(
         email: email.text.trim(),
         password: password.text.trim(),
       );
+
       await preferences.setString(ID, userCredential.user!.uid);
       await preferences.setBool(LOGGED_IN, true);
 
       _userModel = await _userServices.getUserById(userCredential.user!.uid);
+
+      if (_userModel.role != expectedRole) {
+        await signOut();
+        return AuthFailure("Unauthorized role. Please use the correct app.");
+      }
+
       _status = Status.Authenticated;
       notifyListeners();
-      if (context.mounted) {
-        showSnackBar(context, "Sign in successful");
-      }
-      return true;
+
+      return AuthSuccess(_userModel);
     } catch (e) {
       _status = Status.Unauthenticated;
       notifyListeners();
-      // Check if `context` is still mounted before showing a SnackBar
-      if (context.mounted) {
-        showSnackBar(context, "Error during sign in: ${e.toString()}");
-      }
-      return false;
+      return AuthFailure("Error during sign in: ${e.toString()}");
     }
   }
 
-  Future<bool> signUp(
+  Future<AuthResult> signUp(
     String email,
     String password,
     String fullName,
     String phone,
-    BuildContext context,
   ) async {
     try {
       _status = Status.Authenticating;
       notifyListeners();
+
       UserCredential result = await _auth.createUserWithEmailAndPassword(
         email: email,
         password: password,
       );
+
       SharedPreferences preferences = await SharedPreferences.getInstance();
       await preferences.setString(ID, result.user!.uid);
       await preferences.setBool(LOGGED_IN, true);
+
       await _userServices.createUser(
         id: result.user!.uid,
         fullName: fullName,
         email: email,
         phone: phone,
         password: password,
+        role: 'driver',
       );
+
       _userModel = await _userServices.getUserById(result.user!.uid);
       _status = Status.Authenticated;
       notifyListeners();
-      if (context.mounted) {
-        showSnackBar(context, "Sign-up successful");
-      }
-      return true;
+
+      return AuthSuccess(_userModel);
     } catch (e) {
       _status = Status.Unauthenticated;
       notifyListeners();
-      // print("Error during sign up: $e");
-      if (context.mounted) {
-        showSnackBar(context, "Sign-up failed: ${e.toString()}");
-      }
-      return false;
+      return AuthFailure("Sign-up failed: ${e.toString()}");
     }
   }
 

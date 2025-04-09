@@ -6,18 +6,21 @@ class UserModel {
   static const String EMAIL = "email";
   static const String PHONE = "phone";
   static const String PASSWORD = "password";
+  static const String ROLE = "role";
 
   late String _id;
   late String _fullName;
   late String _email;
   late String _phone;
   late String _password;
+  late String _role;
 
   String get id => _id;
   String get email => _email;
   String get fullName => _fullName;
   String get phone => _phone;
   String get password => _password;
+  String get role => _role;
 
   UserModel.fromSnapshot(DataSnapshot snapshot) {
     Map<dynamic, dynamic> data = snapshot.value as Map<dynamic, dynamic>;
@@ -27,5 +30,6 @@ class UserModel {
     _email = data[EMAIL];
     _phone = data[PHONE];
     _password = data[PASSWORD];
+    _role = data[ROLE];
   }
 }

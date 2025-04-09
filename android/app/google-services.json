@@ -1,0 +1,49 @@
+{
+  "project_info": {
+    "project_number": "814158007440",
+    "firebase_url": "https://ridehailing-b2de0-default-rtdb.firebaseio.com",
+    "project_id": "ridehailing-b2de0",
+    "storage_bucket": "ridehailing-b2de0.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:814158007440:android:a4fdfd410f744de4005c15",
+        "android_client_info": {
+          "package_name": "com.example.ridehailing"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALUXcSU_w_9vqZr1TElnTRJRcsr0EYJ24"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:814158007440:android:2fffa4039790c8df005c15",
+        "android_client_info": {
+          "package_name": "com.example.ridehailing_driver"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyALUXcSU_w_9vqZr1TElnTRJRcsr0EYJ24"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
