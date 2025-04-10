@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 const grandisExtendedFont = "Grandis Extended";
 
@@ -37,6 +38,7 @@ const Color errorColor = Color(0xFFEA5B5B);
 const double defaultPadding = 16.0;
 const double defaultBorderRadious = 12.0;
 const double searchContainerHeight = 220;
+const Duration defaultDuration = Duration(milliseconds: 300);
 
 void showSnackBar(BuildContext context, String title) {
   ScaffoldMessenger.of(context).showSnackBar(
@@ -49,7 +51,7 @@ void showSnackBar(BuildContext context, String title) {
   );
 }
 
-// const CameraPosition kGooglePlex = CameraPosition(
-//   target: LatLng(5.6037, -0.1870),
-//   zoom: 14.4746,
-// );
+const CameraPosition kGooglePlex = CameraPosition(
+  target: LatLng(5.6037, -0.1870),
+  zoom: 14.4746,
+);

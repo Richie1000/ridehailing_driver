@@ -2,9 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ridehailing_driver/auth/auth_result.dart';
 import 'package:ridehailing_driver/auth/signup_screen.dart';
+import 'package:ridehailing_driver/entry_point.dart';
 import 'package:ridehailing_driver/providers/user_provider.dart';
 import 'package:ridehailing_driver/theme/contants.dart';
-import 'package:ridehailing_driver/views/home_screen.dart';
+import 'package:ridehailing_driver/views/home/home_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -70,7 +71,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           Navigator.pushReplacement(
                             context,
                             MaterialPageRoute(
-                              builder: (_) => const HomeScreen(),
+                              builder: (_) => const EntryPoint(),
                             ),
                           );
                         }
