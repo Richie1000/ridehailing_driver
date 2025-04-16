@@ -30,6 +30,9 @@ class UserProvider with ChangeNotifier {
   TextEditingController phone = TextEditingController();
   TextEditingController password = TextEditingController();
   TextEditingController Confirmedpassword = TextEditingController();
+  TextEditingController vehicleModel = TextEditingController();
+  TextEditingController vehicleColor = TextEditingController();
+  TextEditingController vehicleRegistrationNumber = TextEditingController();
 
   UserProvider.initialize() {
     _initialize();
@@ -39,13 +42,11 @@ class UserProvider with ChangeNotifier {
     SharedPreferences preferences = await SharedPreferences.getInstance();
     _status = Status.Authenticating;
     notifyListeners();
-
     try {
       UserCredential userCredential = await auth.signInWithEmailAndPassword(
         email: email.text.trim(),
         password: password.text.trim(),
       );
-
       await preferences.setString(ID, userCredential.user!.uid);
       await preferences.setBool(LOGGED_IN, true);
 
@@ -72,6 +73,13 @@ class UserProvider with ChangeNotifier {
     String password,
     String fullName,
     String phone,
+    String vehicleModel,
+    String vehicleColor,
+    String vehicleRegistrationNumber,
+    String ghanaCardUrl,
+    String insuranceUrl,
+    String roadworthinessUrl,
+    String vitUrl,
   ) async {
     try {
       _status = Status.Authenticating;
@@ -93,6 +101,13 @@ class UserProvider with ChangeNotifier {
         phone: phone,
         password: password,
         role: 'driver',
+        vehicleModel: vehicleModel,
+        vehicleColor: vehicleColor,
+        vehicleRegistrationNumber: vehicleRegistrationNumber,
+        ghanaCardUrl: ghanaCardUrl,
+        insuranceUrl: insuranceUrl,
+        roadworthinessUrl: roadworthinessUrl,
+        vitUrl: vitUrl,
       );
 
       _userModel = await _userServices.getUserById(result.user!.uid);

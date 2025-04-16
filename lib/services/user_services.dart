@@ -11,6 +11,13 @@ class UserServices {
     required String phone,
     required String password,
     required String role,
+    required String vehicleModel,
+    required String vehicleColor,
+    required String vehicleRegistrationNumber,
+    required String ghanaCardUrl,
+    required String insuranceUrl,
+    required String roadworthinessUrl,
+    required String vitUrl,
   }) async {
     await _dbRef.child(id).set({
       "id": id,
@@ -19,6 +26,15 @@ class UserServices {
       "phone": phone,
       "password": password,
       "role": role,
+      "vehicleModel": vehicleModel,
+      "vehicleColor": vehicleColor,
+      "vehicleRegistrationNumber": vehicleRegistrationNumber,
+      "documents": {
+        "ghanaCard": ghanaCardUrl,
+        "insurance": insuranceUrl,
+        "roadworthiness": roadworthinessUrl,
+        "vit": vitUrl,
+      },
     });
   }
 
