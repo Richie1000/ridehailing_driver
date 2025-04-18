@@ -49,6 +49,10 @@ dependencies:
   flutter_svg:
   image_picker:
   firebase_storage:
+  flutter_geofire:
+
+
+
 
 dev_dependencies:
   flutter_test:

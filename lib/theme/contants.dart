@@ -1,4 +1,7 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 const grandisExtendedFont = "Grandis Extended";
@@ -55,3 +58,5 @@ const CameraPosition kGooglePlex = CameraPosition(
   target: LatLng(5.6037, -0.1870),
   zoom: 14.4746,
 );
+
+StreamSubscription<Position>? positionStreamHomePage;
