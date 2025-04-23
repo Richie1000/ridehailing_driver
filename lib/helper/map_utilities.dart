@@ -13,10 +13,8 @@ class MapUtilities {
   convertCoordinatesIntoHumanReadableAddress(Position position) async {
     String geoCodingUrl =
         "https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.latitude},${position.longitude}&key=$GOOGLE_MAP_KEY";
-
     try {
       final response = await RequestUtils.receiveRequest(geoCodingUrl);
-
       if (response.statusCode == 200) {
         final results = response.data['results'];
         if (results != null && results.isNotEmpty) {
@@ -26,7 +24,6 @@ class MapUtilities {
             addressParts.removeAt(0);
           }
           address = addressParts.join(", ");
-
           final geocode =
               GeocodeAddress()
                 ..humanReadableAddress = address
@@ -34,7 +31,6 @@ class MapUtilities {
                 ..placeID = results[0]["place_id"]
                 ..latitude = position.latitude
                 ..longitude = position.longitude;
-
           return ApiSuccess(geocode);
         }
         return ApiFailure("No address found at the provided location.");
@@ -51,10 +47,8 @@ class MapUtilities {
     String baseUrl =
         'https://maps.googleapis.com/maps/api/place/autocomplete/json';
     String url = '$baseUrl?input=$input&key=$map_api_key&components=country:GH';
-
     try {
       ApiResponse response = await RequestUtils.receiveRequest(url);
-
       if (response.statusCode == 200) {
         var data = response.data;
         if (data['status'] == 'OK') {
@@ -83,7 +77,6 @@ class MapUtilities {
 
     try {
       ApiResponse response = await RequestUtils.receiveRequest(url);
-
       if (response.statusCode == 200 &&
           response.data["routes"] != null &&
           response.data["routes"].isNotEmpty) {
@@ -96,7 +89,6 @@ class MapUtilities {
               ..durationValue = leg["duration"]["value"]
               ..polyLinePoints =
                   response.data["routes"][0]["overview_polyline"]["points"];
-
         return ApiSuccess(details);
       }
       return ApiFailure("No valid route found between the locations.");
@@ -110,10 +102,8 @@ class MapUtilities {
   ) async {
     String url =
         'https://maps.googleapis.com/maps/api/place/details/json?place_id=$placeID&key=$map_api_key';
-
     try {
       ApiResponse response = await RequestUtils.receiveRequest(url);
-
       if (response.statusCode == 200) {
         var results = response.data["result"];
         if (results != null && results.isNotEmpty) {
@@ -123,7 +113,6 @@ class MapUtilities {
                 ..latitude = results["geometry"]["location"]["lat"]
                 ..longitude = results["geometry"]["location"]["lng"]
                 ..placeID = placeID;
-
           return ApiSuccess(place);
         }
         return ApiFailure("No details found for the place ID: $placeID");

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ridehailing_driver/auth/auth_result.dart';
-import 'package:ridehailing_driver/auth/signup_screen.dart';
+import 'package:ridehailing_driver/auth/signup/signup_screen.dart';
 import 'package:ridehailing_driver/entry_point.dart';
 import 'package:ridehailing_driver/providers/user_provider.dart';
 import 'package:ridehailing_driver/theme/contants.dart';

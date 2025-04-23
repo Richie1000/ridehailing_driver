@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:ridehailing_driver/theme/contants.dart';
 import 'package:ridehailing_driver/views/Earnings/earnings_page.dart';
 import 'package:ridehailing_driver/views/home/home_screen.dart';
+import 'package:ridehailing_driver/views/notification/notification_page.dart';
 import 'package:ridehailing_driver/views/profile/profile_page.dart';
 import 'package:ridehailing_driver/views/trips/trips_page.dart';
 
@@ -19,6 +20,7 @@ class _EntryPointState extends State<EntryPoint> {
     HomeScreen(),
     EarningsPage(),
     TripsPage(),
+    NotificationPage(),
     ProfilePage(),
   ];
   int _currentIndex = 0;
@@ -40,43 +42,40 @@ class _EntryPointState extends State<EntryPoint> {
     }
 
     return Scaffold(
-      appBar: AppBar(
-        // pinned: true,
-        // floating: true,
-        // snap: true,
-        backgroundColor: Theme.of(context).scaffoldBackgroundColor,
-        leading: const SizedBox(),
-        leadingWidth: 0,
-        centerTitle: false,
-        actions: [
-          IconButton(
-            onPressed: () {
-              // Navigator.pushNamed(context, searchScreenRoute);
-            },
-            icon: SvgPicture.asset(
-              "assets/icons/Search.svg",
-              height: 24,
-              colorFilter: ColorFilter.mode(
-                Theme.of(context).textTheme.bodyLarge!.color!,
-                BlendMode.srcIn,
-              ),
-            ),
-          ),
-          IconButton(
-            onPressed: () {
-              //navigate to notification screen
-            },
-            icon: SvgPicture.asset(
-              "assets/icons/Notification.svg",
-              height: 24,
-              colorFilter: ColorFilter.mode(
-                Theme.of(context).textTheme.bodyLarge!.color!,
-                BlendMode.srcIn,
-              ),
-            ),
-          ),
-        ],
-      ),
+      // appBar: AppBar(
+      //   backgroundColor: Theme.of(context).scaffoldBackgroundColor,
+      //   leading: const SizedBox(),
+      //   leadingWidth: 0,
+      //   centerTitle: false,
+      //   actions: [
+      //     IconButton(
+      //       onPressed: () {
+      //         // Navigator.pushNamed(context, searchScreenRoute);
+      //       },
+      //       icon: SvgPicture.asset(
+      //         "assets/icons/Search.svg",
+      //         height: 24,
+      //         colorFilter: ColorFilter.mode(
+      //           Theme.of(context).textTheme.bodyLarge!.color!,
+      //           BlendMode.srcIn,
+      //         ),
+      //       ),
+      //     ),
+      //     IconButton(
+      //       onPressed: () {
+      //         //navigate to notification screen
+      //       },
+      //       icon: SvgPicture.asset(
+      //         "assets/icons/Notification.svg",
+      //         height: 24,
+      //         colorFilter: ColorFilter.mode(
+      //           Theme.of(context).textTheme.bodyLarge!.color!,
+      //           BlendMode.srcIn,
+      //         ),
+      //       ),
+      //     ),
+      //   ],
+      // ),
       body: PageTransitionSwitcher(
         duration: defaultDuration,
         transitionBuilder: (child, animation, secondAnimation) {
@@ -127,12 +126,20 @@ class _EntryPointState extends State<EntryPoint> {
               label: "Earnings",
             ),
             BottomNavigationBarItem(
-              icon: svgIcon("assets/icons/Bookmark.svg"),
+              icon: svgIcon("assets/icons/Mylocation.svg"),
               activeIcon: svgIcon(
-                "assets/icons/Bookmark.svg",
+                "assets/icons/Mylocation.svg",
                 color: primaryColor,
               ),
               label: "Trips",
+            ),
+            BottomNavigationBarItem(
+              icon: svgIcon("assets/icons/Notification.svg"),
+              activeIcon: svgIcon(
+                "assets/icons/Notification.svg",
+                color: primaryColor,
+              ),
+              label: "Notification",
             ),
             BottomNavigationBarItem(
               icon: svgIcon("assets/icons/Profile.svg"),

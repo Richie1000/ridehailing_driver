@@ -76,6 +76,7 @@ linux/.vs/
 
 #Google Map API key
 lib/helper/secret.dart
+android/app/src/main/AndroidManifest.xml
 
 #Firebase config
 android/app/google-services.json
