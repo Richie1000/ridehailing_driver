@@ -49,7 +49,7 @@ dependencies:
   flutter_svg:
   image_picker:
   firebase_storage:
-  flutter_geofire:
+
 
 
 
